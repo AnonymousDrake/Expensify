@@ -32,7 +32,11 @@ const editExpense = (id, updates = {}) => ({
   updates,
 });
 
+//Default Expenses State
+
 const expensesReducerDefaultState = [];
+
+//Setting Expenses Reducer
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
@@ -58,9 +62,9 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
 
 //For filters
 
-const setTextFilter = (text = "") => ({
+const setTextFilter = (text) => ({
   type: "Set_Text_Filter",
-  text: text,
+  text,
 });
 
 const sortByDate = () => ({
@@ -83,12 +87,16 @@ const setEndDate = (endDate = "1/1/2020") => ({
   endDate,
 });
 
+//Default Filters State
+
 const filtersReducerDefaultState = {
   text: "",
   sortBy: "date",
   startDate: undefined,
   endDate: undefined,
 };
+
+//Setting Filters Reducer
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
@@ -116,35 +124,49 @@ const store = createStore(
   })
 );
 
+//Get Visible Expenses
+
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+  return expenses.filter((expense) => {
+    const startDateMatch =
+      typeof startDate !== "number" || expense.createdAt >= startDate;
+    const endDateMatch =
+      typeof endDate !== "number" || expense.createdAt <= endDate;
+    const textMatch = expense.description
+      .toLowerCase()
+      .includes(text.toLowerCase());
+
+    return startDateMatch && endDateMatch && textMatch;
+  });
+};
+
 //Store Subscription
 
 store.subscribe(() => {
-  console.log(store.getState());
+  const state = store.getState();
+  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+  console.log(visibleExpenses);
 });
 
 //Dispatching Actions
 
-// store.dispatch(
-//   addExpense({ description: "Hello", note: "Yo", amount: 25, createdAt: 4 })
-// );
+const item = store.dispatch(
+  addExpense({
+    description: "Rent",
+    note: "YoWWW",
+    amount: 250,
+    createdAt: 1000,
+  })
+);
 
-// const item = store.dispatch(
-//   addExpense({
-//     description: "HelloWWW",
-//     note: "YoWWW",
-//     amount: 250,
-//     createdAt: 5,
-//   })
-// );
-
-// const item2 = store.dispatch(
-//   addExpense({
-//     description: "HelloWWW46584",
-//     note: "Yo548498",
-//     amount: 2500000,
-//     createdAt: 6,
-//   })
-// );
+const item2 = store.dispatch(
+  addExpense({
+    description: "Coffee",
+    note: "Yo548498",
+    amount: 2500000,
+    createdAt: -1000,
+  })
+);
 
 // store.dispatch(removeExpense({ id: item.expense.id }));
 
@@ -154,12 +176,12 @@ store.subscribe(() => {
 
 // store.dispatch(setTextFilter("YoBro"));
 
-// store.dispatch(setTextFilter(""));
+store.dispatch(setTextFilter("Coffee2"));
 
 // store.dispatch(sortByDate());
 
 // store.dispatch(sortByAmount());
 
-store.dispatch(setStartDate("24/11"));
+// store.dispatch(setStartDate(125));
 
-store.dispatch(setEndDate("9/12"));
+//store.dispatch(setEndDate());
