@@ -20,7 +20,10 @@ import "./styles/styles.scss";
 const store = configureStore();
 
 store.dispatch(addExpense({ description: "Water Bill" }));
-store.dispatch(addExpense({ description: "Gas Bill" }));
+store.dispatch(addExpense({ description: "Gas Bill", createdAt: 1000 }));
+
+store.dispatch(addExpense({ description: "Rent", amount: 1220 }));
+
 store.dispatch(setTextFilter("Water"));
 
 console.log(
