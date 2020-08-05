@@ -1,32 +1,33 @@
-import { v4 as uuidv4 } from "uuid";
+import uuid from 'uuid';
 
-const addExpense = ({
-  description = "",
-  note = "",
-  amount = 0,
-  createdAt = 0,
-} = {}) => ({
-  type: "Add_Expense",
+// ADD_EXPENSE
+export const addExpense = (
+  {
+    description = '',
+    note = '',
+    amount = 0,
+    createdAt = 0
+  } = {}
+) => ({
+  type: 'ADD_EXPENSE',
   expense: {
-    id: uuidv4(),
+    id: uuid(),
     description,
     note,
     amount,
-    createdAt,
-  },
+    createdAt
+  }
 });
 
-const removeExpense = ({ id } = {}) => {
-  return {
-    type: "Remove_Expense",
-    id,
-  };
-};
+// REMOVE_EXPENSE
+export const removeExpense = ({ id } = {}) => ({
+  type: 'REMOVE_EXPENSE',
+  id
+});
 
-const editExpense = (id, updates = {}) => ({
-  type: "Edit_Expense",
+// EDIT_EXPENSE
+export const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
   id,
-  updates,
+  updates
 });
-
-export { addExpense, removeExpense, editExpense };
