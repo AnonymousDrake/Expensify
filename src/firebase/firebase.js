@@ -15,12 +15,48 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: "Ekam",
-  age: 20,
-  isSingle: true,
-  location: {
-    city: "Moga",
-    state: "Punjab",
-  },
-});
+database
+  .ref()
+  .set({
+    name: "Ekam",
+    age: 19,
+    stressLevel: 5,
+    job: {
+      title: "Software Developer",
+      company: "Google",
+    },
+    location: {
+      city: "Moga",
+      state: "Punjab",
+    },
+  })
+  .then(() => {
+    console.log("Data is saved");
+  })
+  .catch((error) => {
+    console.log("This failed!", error);
+  });
+
+// database
+//   .ref("isSingle")
+//   .remove()
+//   .then(() => {
+//     console.log("Data Removed");
+//   })
+//   .catch((error) => {
+//     console.log("Couldn't remove data", error);
+//   });
+
+database
+  .ref()
+  .update({
+    stressLevel: 7,
+    "job/company": "Amazon",
+    "location/city": "Seattle",
+  })
+  .then(() => {
+    console.log("Data updateddd");
+  })
+  .catch((error) => {
+    console.log("couldn't modify data", error);
+  });
