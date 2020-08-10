@@ -15,27 +15,58 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database
-  .ref()
-  .set({
-    name: "Ekam",
-    age: 19,
-    stressLevel: 5,
-    job: {
-      title: "Software Developer",
-      company: "Google",
-    },
-    location: {
-      city: "Moga",
-      state: "Punjab",
-    },
-  })
-  .then(() => {
-    console.log("Data is saved");
-  })
-  .catch((error) => {
-    console.log("This failed!", error);
-  });
+database.ref().on("value", (snapshot) => {
+  const value = snapshot.val();
+  console.log(`${value.name} is a ${value.job.title} at ${value.job.company}`);
+});
+
+// database.ref().on("value", (snapshot) => {
+//   console.log(snapshot.val());
+// });
+
+// const onValueChange = setTimeout(() => {
+//   database.ref("age").set(25);
+// }, 2000);
+
+// setTimeout(() => {
+//   database.ref().off(onValueChange);
+// }, 4000);
+
+// setTimeout(() => {
+//   database.ref("age").set(35);
+// }, 6000);
+
+// database
+//   .ref()
+//   .once("value")
+//   .then((snapshot) => {
+//     const val = snapshot.val();
+//     console.log(val);
+//   })
+//   .catch((error) => {
+//     console.log("Errrr:", error);
+//   });
+// database
+//   .ref()
+//   .set({
+//     name: "Ekam",
+//     age: 19,
+//     stressLevel: 5,
+//     job: {
+//       title: "Software Developer",
+//       company: "Google",
+//     },
+//     location: {
+//       city: "Moga",
+//       state: "Punjab",
+//     },
+//   })
+//   .then(() => {
+//     console.log("Data is saved");
+//   })
+//   .catch((error) => {
+//     console.log("This failed!", error);
+//   });
 
 // database
 //   .ref("isSingle")
@@ -47,16 +78,16 @@ database
 //     console.log("Couldn't remove data", error);
 //   });
 
-database
-  .ref()
-  .update({
-    stressLevel: 7,
-    "job/company": "Amazon",
-    "location/city": "Seattle",
-  })
-  .then(() => {
-    console.log("Data updateddd");
-  })
-  .catch((error) => {
-    console.log("couldn't modify data", error);
-  });
+// database
+//   .ref()
+//   .update({
+//     stressLevel: 7,
+//     "job/company": "Amazon",
+//     "location/city": "Seattle",
+//   })
+//   .then(() => {
+//     console.log("Data updateddd");
+//   })
+//   .catch((error) => {
+//     console.log("couldn't modify data", error);
+//   });
