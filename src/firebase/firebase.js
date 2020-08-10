@@ -15,10 +15,83 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().on("value", (snapshot) => {
-  const value = snapshot.val();
-  console.log(`${value.name} is a ${value.job.title} at ${value.job.company}`);
+database.ref("expenses").on("value", (snapshot) => {
+  expenses = [];
+  snapshot.forEach((childSnapshot) => {
+    expenses.push({
+      id: childSnapshot.key,
+      ...childSnapshot.val(),
+    });
+  });
+  console.log(expenses);
 });
+
+// database.ref("expenses").once((snapshot) => {
+//   expenses = [];
+//   snapshot.forEach((childSnapshot) => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val(),
+//     });
+//   });
+//   console.log(expenses);
+// });
+
+// const expenses = [
+//   {
+//     description: "Bike",
+//     note: "",
+//     amount: 152,
+//     createdAt: 1542,
+//   },
+//   {
+//     description: "Car",
+//     note: "Bought",
+//     amount: 45,
+//     createdAt: 4588,
+//   },
+//   {
+//     description: "truck",
+//     note: "Sold",
+//     amount: 486,
+//     createdAt: 48965,
+//   },
+// ];
+
+// database.ref("expenses").push(expenses[0]);
+// database.ref("expenses").push(expenses[1]);
+// database.ref("expenses").push(expenses[2]);
+// const notes = [
+//   {
+//     age: 19,
+//     name: "Ekam",
+//     location: {
+//       state: "Punjab",
+//       city: "Moga",
+//     },
+//   },
+//   {
+//     age: 22,
+//     name: "Bikram",
+//     location: {
+//       city: "Ghaziabad",
+//       state: "Up",
+//     },
+//   },
+// ];
+// database
+//   .ref()
+//   .set(notes)
+//   .then(() => {
+//     console.log("Yes!");
+//   })
+//   .catch((e) => {
+//     console.log("Error: ", error);
+//   });
+// database.ref().on("value", (snapshot) => {
+//   const value = snapshot.val();
+//   console.log(`${value.name} is a ${value.job.title} at ${value.job.company}`);
+// });
 
 // database.ref().on("value", (snapshot) => {
 //   console.log(snapshot.val());
