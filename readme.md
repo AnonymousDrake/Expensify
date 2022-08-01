@@ -1,7 +1,4 @@
 <br/>
-<br/>
-<br/>
-
 <h1 align="center">Expensify - control your expenses!</h1>
 <div align="center">
     <div>
@@ -36,7 +33,7 @@ yarn
 yarn build:dev
 ```
 
-## Start app :
+## Start server :
 
 ```
 yarn dev-server
