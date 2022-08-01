@@ -6,7 +6,6 @@
 <div align="center">
     <div>
         <img src="https://img.shields.io/badge/Contributors-1-orange" />
-        <img src="https://img.shields.io/badge/React" />
     </div>
     <br />
 </div>
@@ -46,19 +45,19 @@ yarn dev-server
 ## Screenshots
 
 <div justify-content="space-between" align="center">
-  <img alt="search" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/main/.github/images/google-login.png" width="400" />
+  <img alt="search" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/master/.github/images/google-login.png" width="400" />
   </br>
   <p>🌟Added support for Google Login using firebase🌟</p>
   </br>
-  <img alt="search-result" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/main/.github/images/view-expenses.png" width="400" />
+  <img alt="search-result" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/master/.github/images/view-expenses.png" width="400" />
   </br>
   <p>🌟View all your expenses🌟</p>
   </br>
-  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/main/.github/images/add-expense.png" width="400" />
+  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/master/.github/images/add-expense.png" width="400" />
   </br>
   <p>🌟Create a new expense🌟</p>
   </br>
-  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/main/.github/images/filter-by-date.png" width="400" />
+  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/Expensify/master/.github/images/filter-by-date.png" width="400" />
   </br>
   <p>🌟Filter your expense by date/amount🌟</p>
 </div></text>
